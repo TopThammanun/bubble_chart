@@ -13,10 +13,11 @@ const LoadingScreen = (props: Props) => {
             isOpen={isLoading}
             isDismissable={false}
             hideCloseButton={true}
+            placement='center'
             className="bg-transparent border-none shadow-none text-primary"
         >
             <ModalContent>
-                <Spinner color="primary" size='lg'/>
+                <Spinner color="primary" size='lg' />
             </ModalContent>
         </Modal>
     )

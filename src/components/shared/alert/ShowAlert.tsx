@@ -80,6 +80,7 @@ const Alert = (props: ShowAlertProps & ButtonCancle & ButtonSubmit) => {
       onClose={onClose}
       isDismissable={isDismissable}
       hideCloseButton={hideCloseButton}
+      placement={"center"}
     >
       <ModalContent>
         <ModalBody>

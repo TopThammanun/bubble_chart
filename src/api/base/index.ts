@@ -4,7 +4,7 @@ import $ from "jquery";
 import { apiBaseType } from "./apiBaseType";
 
 const param = $.param;
-const defaultURL = "https://randomuser.me";
+const defaultURL = process.env.NEXT_PUBLIC_SERVICE;
 
 export class ServerError extends Error {
   status: number;
@@ -22,11 +22,14 @@ const axiosBase = axios.create({
   headers: {
     Accept: process.env.NEXT_PUBLIC_ACCEPT,
     token: process.env.NEXT_PUBLIC_TOKEN,
-    // Authorization: `Bearer ${Cookies.get("token")}`, //*send token in Header*/
   },
 });
 
 axiosBase.interceptors.request.use((config) => {
+  // const token = Cookies.get("token");
+  // if (token) {
+  //   config.headers.Authorization = `Bearer ${token}`;
+  // } //*send token in Header*/
   return config;
 });
 
