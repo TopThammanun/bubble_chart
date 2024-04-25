@@ -37,7 +37,7 @@ const Home = (props: Props) => {
 
         <Button onClick={getApi}>Call API</Button>
 
-        <div className='grid grid-cols-5 max-md:grid-cols-2 gap-5'>
+        <div className='grid grid-cols-6 max-md:grid-cols-2 gap-5'>
           <Button color="primary" onClick={() => (
             Alert.message({
               content: "Open Message",
@@ -46,6 +46,17 @@ const Home = (props: Props) => {
           )}>
             Open Message
           </Button>
+
+          <Button color="secondary" onClick={() => (
+            Alert.message({
+              content: "Open Message",
+              noButton: true,
+              color: "secondary"
+            })
+          )}>
+            Open Message
+          </Button>
+
           <Button color="danger" onClick={() => (
             Alert.error({
               content: "Open Error",
@@ -114,15 +125,21 @@ const Home = (props: Props) => {
             defaultMonth={rangeDate?.from}
           />
           <Input
-            type="email"
-            label="Email"
-            placeholder="you@example.com"
+            type="text"
+            label="Name"
+            placeholder="Enter Name"
+            variant='bordered'
+          />
+          <Input
+            type="number"
+            label="Number"
+            placeholder="Enter Number"
             variant='bordered'
           />
           <Input
             type="email"
             label="Email"
-            placeholder="you@example.com"
+            placeholder="Enter Email"
             variant='bordered'
           />
         </div>
