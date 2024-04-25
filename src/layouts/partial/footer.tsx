@@ -11,7 +11,7 @@ const Footer = (props: Props) => {
             <div className='flex gap-1 items-center'>
                 Copyright
                 <Icon icon="tdesign:copyright" className='text-lg' />
-                2023 | DOUBLE N & N
+                2023 | {process.env.NEXT_PUBLIC_PROJECT_NAME}
             </div>
             <div>
                 Developer by SATANG BUDSAI
