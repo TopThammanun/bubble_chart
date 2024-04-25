@@ -4,17 +4,17 @@ import React, { ReactNode } from 'react'
 type Props = {
     children?: ReactNode
     isBackground?: boolean
-    minHeightScreen?: boolean
+    heightScreen?: boolean
     className?: string
 }
 
 const Container = (props: Props) => {
-    const { children, className, isBackground: background = false, minHeightScreen: minHeigthScreen = false } = props
+    const { children, className, isBackground = false, heightScreen = false } = props
 
     return (
-        <section className={cn(background && "bg-glass", minHeigthScreen && "flex flex-col justify-center min-h-[100dvh]")}>
+        <section className={cn(isBackground && "bg-glass", heightScreen && "flex flex-col justify-center min-h-[100dvh]")}>
             <div className='flex justify-center'>
-                <div className={cn('flex flex-col w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl max-xl:px-5', className)}>
+                <div className={cn('w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl max-xl:px-5', className)}>
                     {children}
                 </div>
             </div>

@@ -10,6 +10,7 @@ import useLoaderGlobal from '@/hooks/useLoaderGlobal';
 import DatePicker from '@/components/date-picker';
 import DateMultiplePicker from '@/components/date-multiple-picker';
 import DateRangePicker from '@/components/date-range-picker';
+import Container from '@/components/container';
 
 type Props = {}
 
@@ -33,28 +34,27 @@ const Home = (props: Props) => {
         <div className='flex flex-wrap justify-center items-center gap-5'>
           Tempalte NextJs and NextUI
         </div>
+
         <Button onClick={getApi}>Call API</Button>
-        <div className='flex flex-wrap justify-center items-center gap-5'>
+
+        <div className='grid grid-cols-5 max-md:grid-cols-2 gap-5'>
           <Button color="primary" onClick={() => (
             Alert.message({
               content: "Open Message",
               noButton: true,
-              color: 'primary'
             })
           )}>
             Open Message
           </Button>
-
-          <Button color="primary" onClick={() => (
+          <Button color="danger" onClick={() => (
             Alert.error({
               content: "Open Error",
-              color: 'primary'
             })
           )}>
             Open Error
           </Button>
 
-          <Button color="primary" onClick={() => (
+          <Button color="warning" onClick={() => (
             Alert.warning({
               content: "Open warning",
             })
@@ -62,7 +62,7 @@ const Home = (props: Props) => {
             Open warning
           </Button>
 
-          <Button color="primary" onClick={() => (
+          <Button color="success" onClick={() => (
             Alert.success({
               content: "Open success",
             })
@@ -70,62 +70,62 @@ const Home = (props: Props) => {
             Open success
           </Button>
 
-          <Button color="primary" onClick={() => (
+          <Button color="default" onClick={() => (
             Alert.question({
               content: "Open Question",
+              color: 'default'
             })
           )}>
             Open Question
           </Button>
-
         </div>
-        <DatePicker
-          mode="single"
-          label="DatePicker"
-          placeholder='Picker Date'
-          labelPlacement="inside"
-          variant="faded"
-          selected={date}
-          onSelect={setDate}
-          defaultMonth={date}
-        />
-        <DateMultiplePicker
-          mode="multiple"
-          label="DateMultiplePicker"
-          placeholder='DateMultiplePicker'
-          labelPlacement="outside"
-          variant="bordered"
-          captionLayout='dropdown-buttons'
-          selected={arrDate}
-          onSelect={setArrDate}
-          defaultMonth={arrDate ? arrDate[0] : new Date()}
-        />
-        <DateRangePicker
-          mode="range"
-          label="DateRangePicker"
-          placeholder='DateMultiplePicker'
-          labelPlacement="inside"
-          variant="bordered"
-          captionLayout='dropdown-buttons'
-          selected={rangeDate}
-          onSelect={setRangeDate}
-          numberOfMonths={2}
-          defaultMonth={rangeDate?.from}
-        />
-        <Input
-          type="email"
-          label="Email"
-          placeholder="you@example.com"
-          labelPlacement="inside"
-          variant='bordered'
-        />
-        <Input
-          type="email"
-          label="Email"
-          placeholder="you@example.com"
-          labelPlacement="outside"
-          variant='bordered'
-        />
+
+        <div className='grid grid-cols-2 max-sm:grid-cols-1 gap-5'>
+          <DatePicker
+            mode="single"
+            label="DatePicker"
+            placeholder='Picker Date'
+            labelPlacement="inside"
+            variant="bordered"
+            selected={date}
+            onSelect={setDate}
+            defaultMonth={date}
+          />
+          <DateMultiplePicker
+            mode="multiple"
+            label="DateMultiplePicker"
+            placeholder='DateMultiplePicker'
+            variant="bordered"
+            captionLayout='dropdown-buttons'
+            selected={arrDate}
+            onSelect={setArrDate}
+            defaultMonth={arrDate ? arrDate[0] : new Date()}
+          />
+          <DateRangePicker
+            mode="range"
+            label="DateRangePicker"
+            placeholder='DateMultiplePicker'
+            labelPlacement="inside"
+            variant="bordered"
+            captionLayout='dropdown-buttons'
+            selected={rangeDate}
+            onSelect={setRangeDate}
+            numberOfMonths={2}
+            defaultMonth={rangeDate?.from}
+          />
+          <Input
+            type="email"
+            label="Email"
+            placeholder="you@example.com"
+            variant='bordered'
+          />
+          <Input
+            type="email"
+            label="Email"
+            placeholder="you@example.com"
+            variant='bordered'
+          />
+        </div>
       </div>
     </Fragment >
   )

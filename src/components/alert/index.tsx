@@ -47,7 +47,7 @@ const Alert = {
         ShowAlert({
             icon: icon || <Icon icon="tabler:xbox-x" />,
             noIcon: noIcon,
-            color: color || "primary",
+            color: color || "danger",
             content: content,
             size: size,
             onSubmit: onSubmit,
@@ -72,7 +72,7 @@ const Alert = {
         ShowAlert({
             icon: icon || <Icon icon="clarity:warning-line" />,
             noIcon: noIcon,
-            color: color || "primary",
+            color: color || "warning",
             content: content,
             size: size,
             onSubmit: onSubmit,
@@ -97,7 +97,7 @@ const Alert = {
         ShowAlert({
             icon: icon || <Icon icon="icon-park-outline:check-one" />,
             noIcon: noIcon,
-            color: color || "primary",
+            color: color || "success",
             content: content,
             size: size,
             onSubmit: onSubmit,
