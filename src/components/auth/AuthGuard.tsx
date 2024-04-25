@@ -5,32 +5,32 @@ import React, { useEffect, useState } from 'react'
 
 type Props = {
     children: React.ReactNode
+    authGuard: boolean
 }
 
-//path private
-const privateRoute: string[] = []
-
-const AuthProvider = (props: Props) => {
+const AuthGuard = (props: Props) => {
     const router = useRouter()
     const [isLoading, setLoading] = useState(true)
 
-    useEffect(() => {
+    const handleCheckAuth = () => {
         const token = sessionStorage.getItem("token") // or Redux or Cookie or Other
-        const isPrivateRoute = privateRoute.some((route) =>
-            router.asPath.startsWith(route)
-        )
-        if (!token && isPrivateRoute) {
+        if (!token && props.authGuard) {
             router.push("/") // Path Login
         } else {
             setLoading(false)
         }
+    }
+
+    useEffect(() => {
+        handleCheckAuth()
     }, [router.asPath])
 
     if (isLoading) {
         return null // Or you can return a loading
+    } else {
+        return props.children
     }
 
-    return props.children
 }
 
-export default AuthProvider
+export default AuthGuard

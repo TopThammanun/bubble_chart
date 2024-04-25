@@ -5,9 +5,7 @@ import { useTheme } from 'next-themes'
 import { Icon } from '@iconify/react';
 import { Button } from '@nextui-org/react';
 
-type Props = {}
-
-const SwicthThemes = (props: Props) => {
+const SwicthThemes = () => {
     const { setTheme } = useTheme()
 
     return (
@@ -15,7 +13,7 @@ const SwicthThemes = (props: Props) => {
             <div className='flex relative'>
                 <Button
                     isIconOnly
-                    variant='bordered'
+                    variant='light'
                     color='primary'
                     className='absolute transition-all scale-100 dark:scale-0 opacity-100 dark:opacity-0'
                     onClick={() => setTheme("dark")}
@@ -25,7 +23,7 @@ const SwicthThemes = (props: Props) => {
                 <Button
                     isIconOnly
                     color='primary'
-                    variant='bordered'
+                    variant='light'
                     onClick={() => setTheme("light")}
                     className='transition-all scale-0 dark:scale-100 opacity-0 dark:opacity-100'
                 >

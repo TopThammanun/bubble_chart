@@ -8,13 +8,14 @@ import store from '@/store';
 
 import { AppPropsWithLayoutType } from '@/types/layout/AppPropsWithLayout';
 import NprogressProvider from '@/providers/nprogress'
-import AuthProvider from '@/providers/auth';
 import ReactQueryProvider from '@/providers/react-query';
-import DateJSProvider from '@/providers/datejs';
+import DateJSProvider from '@/providers/date';
 import NextUIProvider from '@/providers/next-ui/index';
+import AuthGuard from '@/components/auth/AuthGuard';
 
 export default function App({ Component, pageProps }: AppPropsWithLayoutType) {
   const getLayout = Component.getLayout || ((page: ReactElement) => page);
+  const auth = Component.authGuard ?? false
 
   return (
     <Fragment>
@@ -23,9 +24,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayoutType) {
           <NprogressProvider>
             <NextUIProvider>
               <DateJSProvider>
-                <AuthProvider>
+                <AuthGuard authGuard={auth}>
                   {getLayout(<Component {...pageProps} />)}
-                </AuthProvider>
+                </AuthGuard>
               </DateJSProvider>
             </NextUIProvider>
           </NprogressProvider>

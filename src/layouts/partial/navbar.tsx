@@ -7,6 +7,7 @@ import { Icon } from '@iconify/react';
 import { Button, Card, Tooltip } from '@nextui-org/react';
 import { useDispatch, useSelector } from 'react-redux'
 import Drawer from '@/components/drawer';
+import SwicthThemes from '@/components/swicth-themes';
 
 type Props = {
     breadcrumb?: ReactNode
@@ -15,7 +16,6 @@ type Props = {
 const Navbar = (props: Props) => {
     const { breadcrumb } = props
     const [isOpenToggle, setIsOpenToggle] = useState(false)
-    const dispatch = useDispatch()
     const logout = () => {
         router.push('/')
     }
@@ -42,7 +42,7 @@ const Navbar = (props: Props) => {
                         {breadcrumb && breadcrumb}
                     </div>
                     <div className='flex items-center gap-2'>
-                        {/* <SwicthThemes /> */}
+                        <SwicthThemes />
                         <Tooltip showArrow={true} content="ออกจากระบบ" delay={0} closeDelay={200} >
                             <Button isIconOnly variant='light' onClick={logout}>
                                 <Icon icon="lucide:log-out" className="h-6 w-6" />

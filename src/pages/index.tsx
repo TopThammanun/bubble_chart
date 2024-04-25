@@ -79,11 +79,6 @@ const Home = (props: Props) => {
           </Button>
 
         </div>
-        <div className='flex items-center gap-2 p-5 rounded-lg border-1'>
-          The current theme is: {theme}
-          <Button onClick={() => setTheme('light')}>Light Mode</Button>
-          <Button onClick={() => setTheme('dark')}>Dark Mode</Button>
-        </div>
         <DatePicker
           mode="single"
           label="DatePicker"
@@ -135,7 +130,6 @@ const Home = (props: Props) => {
     </Fragment >
   )
 }
-export default Home
 
 Home.getLayout = (page: ReactElement) => {
   return (
@@ -148,3 +142,5 @@ Home.getLayout = (page: ReactElement) => {
     </Fragment>
   );
 };
+
+export default Home
