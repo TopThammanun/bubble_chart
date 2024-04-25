@@ -5,8 +5,8 @@ import { MenuSidebar } from './sidebar'
 import router from 'next/router'
 import { Icon } from '@iconify/react';
 import { Button, Card, Tooltip } from '@nextui-org/react';
-import { Drawer, SwicthThemes } from '@/components/shared';
 import { useDispatch, useSelector } from 'react-redux'
+import Drawer from '@/components/drawer';
 
 type Props = {
     breadcrumb?: ReactNode

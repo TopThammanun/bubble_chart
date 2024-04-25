@@ -2,12 +2,14 @@ import { Fragment, ReactElement, useState } from 'react'
 import { useTheme } from "next-themes";
 import RootLayout from '@/layouts/root-layout';
 import MainLayout from '@/layouts/main-layout';
-import { DateMultiplePicker, DatePicker, DateRangePicker } from '@/components/shared';
 import { DateRange } from 'react-day-picker';
-import Alert from '@/components/shared/alert';
+import Alert from '@/components/alert';
 import { Button, Input } from '@nextui-org/react';
 import apiBase from '@/api/base';
 import useLoaderGlobal from '@/hooks/useLoaderGlobal';
+import DatePicker from '@/components/date-picker';
+import DateMultiplePicker from '@/components/date-multiple-picker';
+import DateRangePicker from '@/components/date-range-picker';
 
 type Props = {}
 
@@ -32,13 +34,12 @@ const Home = (props: Props) => {
           Tempalte NextJs and NextUI
         </div>
         <Button onClick={getApi}>Call API</Button>
-
         <div className='flex flex-wrap justify-center items-center gap-5'>
           <Button color="primary" onClick={() => (
             Alert.message({
               content: "Open Message",
               noButton: true,
-              color:'primary'
+              color: 'primary'
             })
           )}>
             Open Message

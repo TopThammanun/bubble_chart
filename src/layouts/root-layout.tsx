@@ -1,11 +1,11 @@
 "use client"
 
-import { LoadingScreen } from '@/components/shared'
 import { StateType } from '@/store'
 import Head from 'next/head'
 import React, { Fragment, ReactNode } from 'react'
 import { useSelector } from 'react-redux'
 import { Image } from '@nextui-org/react'
+import LoadingScreen from '@/components/loading-screen'
 
 type Props = {
     children: ReactNode

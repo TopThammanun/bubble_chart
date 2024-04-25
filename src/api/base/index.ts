@@ -1,4 +1,4 @@
-import Alert from "@/components/shared/alert";
+import Alert from "@/components/alert";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import $ from "jquery";
 import { apiBaseType } from "./apiBaseType";
