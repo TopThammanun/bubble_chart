@@ -53,7 +53,7 @@ const Home = (props: Props) => {
           </Button>
 
           <Button
-            color="secondary"
+            color="primary"
             onClick={() =>
               Alert.message({
                 content: "Open Message",
@@ -66,7 +66,7 @@ const Home = (props: Props) => {
           </Button>
 
           <Button
-            color="danger"
+            color="primary"
             onClick={() =>
               Alert.error({
                 content: "Open Error",
@@ -77,7 +77,7 @@ const Home = (props: Props) => {
           </Button>
 
           <Button
-            color="warning"
+            color="primary"
             onClick={() =>
               Alert.warning({
                 content: "Open warning",
@@ -88,7 +88,7 @@ const Home = (props: Props) => {
           </Button>
 
           <Button
-            color="success"
+            color="primary"
             onClick={() =>
               Alert.success({
                 content: "Open success",
@@ -99,7 +99,7 @@ const Home = (props: Props) => {
           </Button>
 
           <Button
-            color="default"
+            color="primary"
             onClick={() =>
               Alert.question({
                 content: "Open Question",
