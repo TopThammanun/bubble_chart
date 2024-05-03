@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 const { nextui } = require("@nextui-org/react");
 const ColorThemeLight = require("./src/theme/colors/light");
-const ColoreThemeDark = require("./src/theme/colors/dark");
+const ColorThemeDark = require("./src/theme/colors/dark");
 
 module.exports = {
   mode: "jit",
@@ -18,7 +18,7 @@ module.exports = {
       addCommonColors: true,
       themes: {
         light: ColorThemeLight,
-        dark: ColoreThemeDark,
+        dark: ColorThemeDark,
       },
     }),
   ],

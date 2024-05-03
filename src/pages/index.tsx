@@ -31,7 +31,7 @@ const Home = (props: Props) => {
   return (
     <Fragment>
       <div className="flex flex-col gap-5">
-        <div className="flex flex-wrap justify-center items-center gap-5">
+        <div className="flex flex-wrap items-center justify-center gap-5">
           Template NextJs and NextUI
         </div>
 
@@ -39,7 +39,7 @@ const Home = (props: Props) => {
           Call API
         </Button>
 
-        <div className="grid grid-cols-6 max-md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-6 gap-5 max-md:grid-cols-2">
           <Button
             color="primary"
             onClick={() =>
@@ -111,7 +111,7 @@ const Home = (props: Props) => {
           </Button>
         </div>
 
-        <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-5">
+        <div className="grid grid-cols-2 gap-5 max-sm:grid-cols-1">
           <DatePicker
             mode="single"
             label="DatePicker"
