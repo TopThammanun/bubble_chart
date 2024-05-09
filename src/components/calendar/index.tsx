@@ -94,8 +94,7 @@ const Calendar = ({ className, classNames, showOutsideDays = true, ...props }: C
               onChange={event => {
                 handleChange(event.target.value)
               }}
-              className='mx-1 w-28'
-            >
+              className='mx-1 w-28'>
               {options.map(option => (
                 <SelectItem key={`${option.props.value}`} value={option.props.value}>
                   {option.props.children}

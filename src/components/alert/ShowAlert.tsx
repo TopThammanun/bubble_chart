@@ -64,8 +64,7 @@ const Alert = (props: ShowAlertProps & ButtonCancle & ButtonSubmit) => {
       onClose={onClose}
       isDismissable={isDismissable}
       hideCloseButton={hideCloseButton}
-      placement={'center'}
-    >
+      placement={'center'}>
       <ModalContent>
         <ModalBody>
           <div className='m-5 flex flex-col items-center gap-3'>

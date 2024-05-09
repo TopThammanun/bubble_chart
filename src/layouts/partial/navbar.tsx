@@ -30,8 +30,7 @@ const Navbar = (props: Props) => {
                 className='cursor-pointer'
                 onClick={() => {
                   setIsOpenToggle(!isOpenToggle)
-                }}
-              >
+                }}>
                 <Icon icon='lucide:menu' className='h-6 w-6' />
               </div>
               <Drawer
@@ -41,8 +40,7 @@ const Navbar = (props: Props) => {
                   setIsOpenToggle(!isOpenToggle)
                 }}
                 size={'18rem'}
-                className='px-5'
-              >
+                className='px-5'>
                 <MenuSidebar />
               </Drawer>
             </div>

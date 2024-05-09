@@ -45,8 +45,7 @@ const Home = (props: Props) => {
                 content: 'Open Message',
                 noButton: true
               })
-            }
-          >
+            }>
             Open Message
           </Button>
 
@@ -58,8 +57,7 @@ const Home = (props: Props) => {
                 noButton: true,
                 color: 'secondary'
               })
-            }
-          >
+            }>
             Open Message
           </Button>
 
@@ -69,8 +67,7 @@ const Home = (props: Props) => {
               Alert.error({
                 content: 'Open Error'
               })
-            }
-          >
+            }>
             Open Error
           </Button>
 
@@ -80,8 +77,7 @@ const Home = (props: Props) => {
               Alert.warning({
                 content: 'Open warning'
               })
-            }
-          >
+            }>
             Open warning
           </Button>
 
@@ -91,8 +87,7 @@ const Home = (props: Props) => {
               Alert.success({
                 content: 'Open success'
               })
-            }
-          >
+            }>
             Open success
           </Button>
 
@@ -103,8 +98,7 @@ const Home = (props: Props) => {
                 content: 'Open Question',
                 color: 'default'
               })
-            }
-          >
+            }>
             Open Question
           </Button>
         </div>

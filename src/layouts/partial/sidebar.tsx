@@ -30,8 +30,7 @@ const MenuItem = (menuItemProps: MenuItemProps) => {
         menuItemProps.disablePadding ? 'pl-0' : 'px-4',
         menuItemProps.disable ? 'cursor-default' : 'cursor-pointer hover:pl-6'
       )}
-      onClick={() => !menuItemProps.disable && router.push(menuItemProps.path)}
-    >
+      onClick={() => !menuItemProps.disable && router.push(menuItemProps.path)}>
       <div className='flex items-center gap-3'>
         <div className='flex h-full w-fit items-center'>
           <Icon icon={menuItemProps.icon} className='h-6 w-6' />
@@ -66,8 +65,7 @@ export const MenuSidebar = () => {
             aria-label='components'
             startContent={<Icon icon='heroicons:swatch' className='h-6 w-6' />}
             title='Components'
-            className='pl-2'
-          >
+            className='pl-2'>
             <MenuItem path='' label='example' icon='lucide:dot' disablePadding={true} />
             <MenuItem path='' label='example' icon='lucide:dot' disablePadding={true} />
           </AccordionItem>

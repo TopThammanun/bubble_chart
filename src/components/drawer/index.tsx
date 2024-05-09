@@ -30,8 +30,7 @@ const Drawer = ({ className, ...props }: Props) => {
       className={cn('!bg-background !drop-shadow-xl', className)}
       overlayClassName='!bg-background !opacity-80'
       lockBackgroundScroll={true}
-      {...props}
-    >
+      {...props}>
       {props.children}
     </ModernDrawer>
   )
