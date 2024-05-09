@@ -1,12 +1,12 @@
-import { Dayjs } from "dayjs";
+import { Dayjs } from 'dayjs'
 
 export function formatDate(date: Dayjs, format: string) {
-  const isBuddhistEra = true;
+  const isBuddhistEra = true
 
   if (isBuddhistEra) {
-    format = format.replace("YYYY", "BBBB").replace("YY", "BB");
+    format = format.replace('YYYY', 'BBBB').replace('YY', 'BB')
   }
 
-  const formatDate = date.format(format);
-  return formatDate;
+  const formatDate = date.format(format)
+  return formatDate
 }

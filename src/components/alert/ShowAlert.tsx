@@ -1,48 +1,32 @@
-import React, { useState, useEffect, Fragment } from "react";
-import { Button, Modal, ModalBody, ModalContent, useDisclosure, cn } from "@nextui-org/react";
-import { Icon } from "@iconify/react/dist/iconify.js";
-import { createRoot } from "react-dom/client";
+import React, { useState, useEffect, Fragment } from 'react'
+import { Button, Modal, ModalBody, ModalContent, useDisclosure, cn } from '@nextui-org/react'
+import { Icon } from '@iconify/react/dist/iconify.js'
+import { createRoot } from 'react-dom/client'
 
 export type ShowAlertProps = {
-  icon?: "info" | "error" | "warning" | "success" | React.ReactNode;
-  noIcon?: boolean;
-  color?:
-  | "primary"
-  | "default"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "danger";
-  content: string | React.ReactNode;
-  size?:
-  | "xs"
-  | "sm"
-  | "md"
-  | "lg"
-  | "xl"
-  | "2xl"
-  | "3xl"
-  | "4xl"
-  | "5xl"
-  | "full";
-  noButton?: boolean;
-  isDismissable?: boolean;
-  hideCloseButton?: boolean;
-};
+  icon?: 'info' | 'error' | 'warning' | 'success' | React.ReactNode
+  noIcon?: boolean
+  color?: 'primary' | 'default' | 'secondary' | 'success' | 'warning' | 'danger'
+  content: string | React.ReactNode
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | 'full'
+  noButton?: boolean
+  isDismissable?: boolean
+  hideCloseButton?: boolean
+}
 export type ButtonCancle = {
-  onCancle?: () => void;
-  labelCancle?: string;
-};
+  onCancle?: () => void
+  labelCancle?: string
+}
 export type ButtonSubmit = {
-  onSubmit?: () => void;
-  labelSubmit?: string;
-};
+  onSubmit?: () => void
+  labelSubmit?: string
+}
 
 const Alert = (props: ShowAlertProps & ButtonCancle & ButtonSubmit) => {
   const {
     icon,
     noIcon = false,
-    color = "default",
+    color = 'default',
     content,
     size,
     noButton,
@@ -51,54 +35,48 @@ const Alert = (props: ShowAlertProps & ButtonCancle & ButtonSubmit) => {
     onSubmit,
     labelSubmit,
     isDismissable = true,
-    hideCloseButton = false,
-  } = props;
+    hideCloseButton = false
+  } = props
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   useEffect(() => {
     function openModal() {
-      onOpen();
+      onOpen()
     }
     openModal()
-  }, [onOpen]);
+  }, [onOpen])
 
   const handleCancle = async () => {
-    onCancle && (await onCancle());
-    onClose();
-  };
+    onCancle && (await onCancle())
+    onClose()
+  }
 
   const handleSubmit = async () => {
-    onSubmit && (await onSubmit());
-    onClose();
-  };
+    onSubmit && (await onSubmit())
+    onClose()
+  }
 
   return (
     <Modal
-      size={size || "sm"}
+      size={size || 'sm'}
       isOpen={isOpen}
       onClose={onClose}
       isDismissable={isDismissable}
       hideCloseButton={hideCloseButton}
-      placement={"center"}
+      placement={'center'}
     >
       <ModalContent>
         <ModalBody>
-          <div className="flex flex-col gap-3 m-5 items-center">
+          <div className='m-5 flex flex-col items-center gap-3'>
             {!noIcon && (
-              <div className={cn(`text-6xl text-${color}`)}>
-                {icon || <Icon icon="icon-park-twotone:info" />}
-              </div>
+              <div className={cn(`text-6xl text-${color}`)}>{icon || <Icon icon='icon-park-twotone:info' />}</div>
             )}
             {content}
             {!noButton && (
-              <div className="flex gap-2">
+              <div className='flex gap-2'>
                 {labelCancle && (
-                  <Button
-                    color={color}
-                    variant="bordered"
-                    onClick={handleCancle}
-                  >
+                  <Button color={color} variant='bordered' onClick={handleCancle}>
                     {labelCancle}
                   </Button>
                 )}
@@ -113,8 +91,8 @@ const Alert = (props: ShowAlertProps & ButtonCancle & ButtonSubmit) => {
         </ModalBody>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}
 
 const ShowAlert = ({
   icon,
@@ -130,9 +108,9 @@ const ShowAlert = ({
   isDismissable,
   hideCloseButton
 }: ShowAlertProps & ButtonCancle & ButtonSubmit) => {
-  const div = document.createElement("div");
-  document.body.append(document.createElement("div"));
-  const root = createRoot(div);
+  const div = document.createElement('div')
+  document.body.append(document.createElement('div'))
+  const root = createRoot(div)
   root.render(
     <Alert
       icon={icon}
@@ -148,7 +126,7 @@ const ShowAlert = ({
       isDismissable={isDismissable}
       hideCloseButton={hideCloseButton}
     />
-  );
-};
+  )
+}
 
-export default ShowAlert;
+export default ShowAlert

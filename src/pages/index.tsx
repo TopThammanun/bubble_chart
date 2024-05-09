@@ -1,51 +1,49 @@
-import { Fragment, ReactElement, useState } from "react";
-import { useTheme } from "next-themes";
-import RootLayout from "@/layouts/root-layout";
-import MainLayout from "@/layouts/main-layout";
-import { DateRange } from "react-day-picker";
-import Alert from "@/components/alert";
-import { Button, Input } from "@nextui-org/react";
-import apiBase from "@/api/base";
-import useLoaderGlobal from "@/hooks/useLoaderGlobal";
-import DatePicker from "@/components/date-picker";
-import DateMultiplePicker from "@/components/date-multiple-picker";
-import DateRangePicker from "@/components/date-range-picker";
-import Container from "@/components/container";
+import { Fragment, ReactElement, useState } from 'react'
+import { useTheme } from 'next-themes'
+import RootLayout from '@/layouts/root-layout'
+import MainLayout from '@/layouts/main-layout'
+import { DateRange } from 'react-day-picker'
+import Alert from '@/components/alert'
+import { Button, Input } from '@nextui-org/react'
+import apiBase from '@/api/base'
+import useLoaderGlobal from '@/hooks/useLoaderGlobal'
+import DatePicker from '@/components/date-picker'
+import DateMultiplePicker from '@/components/date-multiple-picker'
+import DateRangePicker from '@/components/date-range-picker'
+import Container from '@/components/container'
 
-type Props = {};
+type Props = {}
 
 const Home = (props: Props) => {
-  const loaderGlobal = useLoaderGlobal();
+  const loaderGlobal = useLoaderGlobal()
 
-  const { theme, setTheme } = useTheme();
-  const [date, setDate] = useState<Date | undefined>();
-  const [arrDate, setArrDate] = useState<Date[] | undefined>();
-  const [rangeDate, setRangeDate] = useState<DateRange | undefined>();
+  const { theme, setTheme } = useTheme()
+  const [date, setDate] = useState<Date | undefined>()
+  const [arrDate, setArrDate] = useState<Date[] | undefined>()
+  const [rangeDate, setRangeDate] = useState<DateRange | undefined>()
 
   const getApi = async () => {
-    loaderGlobal.start();
-    await apiBase.get({ urlBase: "https://randomuser.me", url: "/api" });
-    loaderGlobal.stop();
-  };
+    loaderGlobal.start()
+    await apiBase.get({ urlBase: 'https://randomuser.me', url: '/api' })
+    loaderGlobal.stop()
+  }
 
   return (
     <Fragment>
-      <div className="flex flex-col gap-5">
-        <div className="flex flex-wrap items-center justify-center gap-5">
-          Template NextJs and NextUI
-        </div>
+      <div className='flex flex-col gap-5'>
+        <div className='flex flex-wrap items-center justify-center gap-5 bg-red-200'>Template NextJs and NextUI</div>
 
-        <Button variant="flat" color="primary" onClick={getApi}>
+        <Button variant='flat' color='primary' onClick={getApi}>
           Call API
         </Button>
 
-        <div className="grid grid-cols-6 gap-5 max-md:grid-cols-2">
+        <div className='grid grid-cols-6 gap-5 max-md:grid-cols-2'>
           <Button
-            color="primary"
+            color='primary'
             onClick={() =>
               Alert.message({
-                content: "Open Message",
-                noButton: true,
+                content: 'Open Message',
+                noButton: true
               })
             }
           >
@@ -53,12 +51,12 @@ const Home = (props: Props) => {
           </Button>
 
           <Button
-            color="primary"
+            color='primary'
             onClick={() =>
               Alert.message({
-                content: "Open Message",
+                content: 'Open Message',
                 noButton: true,
-                color: "secondary",
+                color: 'secondary'
               })
             }
           >
@@ -66,10 +64,10 @@ const Home = (props: Props) => {
           </Button>
 
           <Button
-            color="primary"
+            color='primary'
             onClick={() =>
               Alert.error({
-                content: "Open Error",
+                content: 'Open Error'
               })
             }
           >
@@ -77,10 +75,10 @@ const Home = (props: Props) => {
           </Button>
 
           <Button
-            color="primary"
+            color='primary'
             onClick={() =>
               Alert.warning({
-                content: "Open warning",
+                content: 'Open warning'
               })
             }
           >
@@ -88,10 +86,10 @@ const Home = (props: Props) => {
           </Button>
 
           <Button
-            color="primary"
+            color='primary'
             onClick={() =>
               Alert.success({
-                content: "Open success",
+                content: 'Open success'
               })
             }
           >
@@ -99,11 +97,11 @@ const Home = (props: Props) => {
           </Button>
 
           <Button
-            color="primary"
+            color='primary'
             onClick={() =>
               Alert.question({
-                content: "Open Question",
-                color: "default",
+                content: 'Open Question',
+                color: 'default'
               })
             }
           >
@@ -111,62 +109,47 @@ const Home = (props: Props) => {
           </Button>
         </div>
 
-        <div className="grid grid-cols-2 gap-5 max-sm:grid-cols-1">
+        <div className='grid grid-cols-2 gap-5 max-sm:grid-cols-1'>
           <DatePicker
-            mode="single"
-            label="DatePicker"
-            placeholder="Picker Date"
-            labelPlacement="inside"
-            variant="bordered"
+            mode='single'
+            label='DatePicker'
+            placeholder='Picker Date'
+            labelPlacement='inside'
+            variant='bordered'
             selected={date}
             onSelect={setDate}
             defaultMonth={date}
           />
           <DateMultiplePicker
-            mode="multiple"
-            label="DateMultiplePicker"
-            placeholder="DateMultiplePicker"
-            variant="bordered"
-            captionLayout="dropdown-buttons"
+            mode='multiple'
+            label='DateMultiplePicker'
+            placeholder='DateMultiplePicker'
+            variant='bordered'
+            captionLayout='dropdown-buttons'
             selected={arrDate}
             onSelect={setArrDate}
             defaultMonth={arrDate ? arrDate[0] : new Date()}
           />
           <DateRangePicker
-            mode="range"
-            label="DateRangePicker"
-            placeholder="DateMultiplePicker"
-            labelPlacement="inside"
-            variant="bordered"
-            captionLayout="dropdown-buttons"
+            mode='range'
+            label='DateRangePicker'
+            placeholder='DateMultiplePicker'
+            labelPlacement='inside'
+            variant='bordered'
+            captionLayout='dropdown-buttons'
             selected={rangeDate}
             onSelect={setRangeDate}
             numberOfMonths={2}
             defaultMonth={rangeDate?.from}
           />
-          <Input
-            type="text"
-            label="Name"
-            placeholder="Enter Name"
-            variant="bordered"
-          />
-          <Input
-            type="number"
-            label="Number"
-            placeholder="Enter Number"
-            variant="bordered"
-          />
-          <Input
-            type="email"
-            label="Email"
-            placeholder="Enter Email"
-            variant="bordered"
-          />
+          <Input type='text' label='Name' placeholder='Enter Name' variant='bordered' />
+          <Input type='number' label='Number' placeholder='Enter Number' variant='bordered' />
+          <Input type='email' label='Email' placeholder='Enter Email' variant='bordered' />
         </div>
       </div>
     </Fragment>
-  );
-};
+  )
+}
 
 Home.getLayout = (page: ReactElement) => {
   return (
@@ -175,7 +158,7 @@ Home.getLayout = (page: ReactElement) => {
         <MainLayout>{page}</MainLayout>
       </RootLayout>
     </Fragment>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
