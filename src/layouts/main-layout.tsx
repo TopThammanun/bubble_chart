@@ -1,34 +1,36 @@
 'use client'
 
-import React, { Fragment, ReactNode } from 'react'
-import Navbar from './partial/navbar'
-import Footer from './partial/footer'
+import React, { ReactNode } from 'react'
+import { Avatar, Button, ScrollShadow, Spacer, Tooltip, Image, Card, CardBody } from '@nextui-org/react'
+import { Icon } from '@iconify/react'
+import { useMediaQuery } from 'usehooks-ts'
+import { cn } from '@/utils/cn'
+import SidebarMenu from './partial/sidebar-menu'
+import { useSelector } from 'react-redux'
+import { StateType } from '@/store'
 import Sidebar from './partial/sidebar'
+import Navbar from './partial/navbar'
+import Container from '@/components/container'
 
 type Props = {
   children: ReactNode
-  breadcrumb?: ReactNode
+  startContent?: ReactNode
 }
 
-const MainLayout = (props: Props) => {
-  const { breadcrumb } = props
+export default function MainLayout(props: Props) {
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
   return (
-    <Fragment>
-      <div className='max-w-screen flex min-h-[100dvh] flex-row'>
-        <Sidebar />
-        <div className='w-full lg:w-[calc(100vw-16rem)]'>
-          <div className='flex min-h-[100dvh] flex-col'>
-            <Navbar breadcrumb={breadcrumb} />
-            <div className='flex-grow'>
-              <div className='px-6 pb-6 max-md:px-5 max-md:pb-5'>{props.children}</div>
-            </div>
-            <Footer />
-          </div>
-        </div>
-      </div>
-    </Fragment>
+    <div className='max-w-screen flex min-h-dvh'>
+      {!isMobile && (
+        <Card radius='none' className='sticky top-0 z-[41] h-dvh'>
+          <Sidebar />
+        </Card>
+      )}
+      <section className='flex flex-1 flex-col'>
+        <Navbar />
+        <div className='flex flex-1 flex-col p-4 pt-0'>{props.children}</div>
+      </section>
+    </div>
   )
 }
-
-export default MainLayout

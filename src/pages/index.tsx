@@ -10,7 +10,6 @@ import useLoaderGlobal from '@/hooks/useLoaderGlobal'
 import DatePicker from '@/components/date-picker'
 import DateMultiplePicker from '@/components/date-multiple-picker'
 import DateRangePicker from '@/components/date-range-picker'
-import Container from '@/components/container'
 
 type Props = {}
 
@@ -31,7 +30,7 @@ const Home = (props: Props) => {
   return (
     <Fragment>
       <div className='flex flex-col gap-5'>
-        <div className='flex flex-wrap items-center justify-center gap-5 bg-red-200'>Template NextJs and NextUI</div>
+        <div className='flex flex-wrap items-center justify-center gap-5'>Template NextJs and NextUI</div>
 
         <Button variant='flat' color='primary' onClick={getApi}>
           Call API
@@ -145,6 +144,9 @@ const Home = (props: Props) => {
   )
 }
 
+export default Home
+Home.authGuard = false
+
 Home.getLayout = (page: ReactElement) => {
   return (
     <Fragment>
@@ -154,5 +156,3 @@ Home.getLayout = (page: ReactElement) => {
     </Fragment>
   )
 }
-
-export default Home

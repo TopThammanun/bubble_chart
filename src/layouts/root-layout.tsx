@@ -27,12 +27,6 @@ const RootLayout = (props: Props) => {
         <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
       </Head>
       <main>
-        <Image
-          src='/images/background-full.svg'
-          removeWrapper
-          radius='none'
-          className='fixed -z-10 h-screen w-screen object-cover'
-        />
         <LoadingScreen isLoading={loaderState.loader > 0} />
         {props.children}
       </main>

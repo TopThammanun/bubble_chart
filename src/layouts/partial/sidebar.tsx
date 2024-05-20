@@ -1,87 +1,103 @@
-'use client'
-import router from 'next/router'
-import React, { Fragment, ReactElement, ReactNode, useState } from 'react'
-import PerfectScrollbar from 'react-perfect-scrollbar'
-import 'react-perfect-scrollbar/dist/css/styles.css'
-import { Icon } from '@iconify/react'
-import { Accordion, AccordionItem, Card, cn } from '@nextui-org/react'
-import { Image } from '@nextui-org/react'
+import { StateType } from '@/store'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useMediaQuery } from 'usehooks-ts'
+import { Avatar, Button, ScrollShadow, Spacer, Tooltip, Image } from '@nextui-org/react'
+import { cn } from '@/utils/cn'
+import SidebarMenu from './sidebar-menu'
+import { sectionItems } from './sidebar-items'
+import { Icon } from '@iconify/react/dist/iconify.js'
+import { appSettingAction } from '@/store/reducers/app-setting'
 
-type MenuItemProps = {
-  path: string
-  label: string
-  icon: string
-  leftElement?: ReactNode
-  disablePadding?: boolean
-  disable?: boolean
+type Props = {
+  disableIsCompact?: boolean
 }
 
-const MenuItem = (menuItemProps: MenuItemProps) => {
-  const active = router.pathname === menuItemProps.path
+const Sidebar = (props: Props) => {
+  const appSettingState = useSelector((state: StateType) => state.appSettingState)
+  const isMobile = useMediaQuery('(max-width: 768px)')
+
+  const isCompact = props.disableIsCompact ? false : appSettingState.isCompact || isMobile
+
   return (
-    <div
+    <aside
       className={cn(
-        'flex items-center justify-between gap-3 rounded-xl py-2 text-base transition-all',
-        !active && menuItemProps.disable
-          ? 'text-foreground/60'
-          : active
-            ? 'bg-primary text-primary-foreground'
-            : 'text-foreground hover:bg-default-200/70 hover:text-default-foreground',
-        menuItemProps.disablePadding ? 'pl-0' : 'px-4',
-        menuItemProps.disable ? 'cursor-default' : 'cursor-pointer hover:pl-6'
-      )}
-      onClick={() => !menuItemProps.disable && router.push(menuItemProps.path)}>
-      <div className='flex items-center gap-3'>
-        <div className='flex h-full w-fit items-center'>
-          <Icon icon={menuItemProps.icon} className='h-6 w-6' />
-        </div>
-        <div>{menuItemProps.label}</div>
-      </div>
-      {menuItemProps.leftElement && <div>{menuItemProps.leftElement}</div>}
-    </div>
-  )
-}
-
-export const MenuSidebar = () => {
-  return (
-    <Fragment>
-      <div className='flex py-7'>
-        <div className='flex w-full items-center justify-center gap-5 rounded-2xl border-2 border-primary bg-primary-50/50 py-3'>
-          <Image width={55} src='/favicon.ico' alt='logo' className='rounded-none' />
-          <div className='flex flex-col text-2xl font-bold text-primary'>
-            <div> DOUBLE </div>
-            <div className='-mt-1'>NEXT </div>
+        'w-screen- flex h-full w-80 flex-col p-6 transition-width',
+        isCompact && 'w-16 items-center px-2 py-6'
+      )}>
+      {/* <section className={cn('flex items-center gap-3 px-3', isCompact && 'justify-center gap-0')}>
+        <div className='flex items-center justify-center rounded-full'>
+          <div className={cn('hidden w-10 scale-0', isCompact && 'flex scale-100')}>
+            <Image src='/images/logo/logo-health-center-small.png' width={50} alt='logo-small' />
+          </div>
+          <div className={cn('flex w-52 scale-100', isCompact && 'hidden scale-0')}>
+            <Image src='/images/logo/logo-health-center.png' width={200} alt='logo' />
           </div>
         </div>
-      </div>
-      <div className='flex flex-col gap-2'>
-        <div className='px-4 font-semibold text-foreground'>MENU</div>
-        <MenuItem path='#' label='หน้าแรก' icon='lucide:home' />
-        <MenuItem path='#' label='หน้าสอง' icon='ep:monitor' disable />
-        <MenuItem path='#' label='หน้าสาม' icon='ep:monitor' />
-        <Accordion selectionMode='multiple' isCompact showDivider={false}>
-          <AccordionItem
-            key='1'
-            aria-label='components'
-            startContent={<Icon icon='heroicons:swatch' className='h-6 w-6' />}
-            title='Components'
-            className='pl-2'>
-            <MenuItem path='' label='example' icon='lucide:dot' disablePadding={true} />
-            <MenuItem path='' label='example' icon='lucide:dot' disablePadding={true} />
-          </AccordionItem>
-        </Accordion>
-      </div>
-    </Fragment>
-  )
-}
+      </section> */}
 
-const Sidebar = () => {
-  return (
-    <Card className='sticky top-0 z-[41] h-[100dvh] w-[16rem] rounded-none bg-background/60 transition-all dark:border-r max-lg:hidden'>
-      <PerfectScrollbar className='px-5'>
-        <MenuSidebar />
-      </PerfectScrollbar>
-    </Card>
+      <div className='mt-8 flex items-center gap-3 px-3'>
+        <Avatar isBordered className='flex-none text-default-600' size='sm' />
+        <div className={cn('flex max-w-full flex-col', { hidden: isCompact })}>
+          <p className='truncate text-small font-medium text-default-600'>FirstName LastName</p>
+          <p className='truncate text-tiny text-default-400'>ผู้ดูแลระบบ</p>
+        </div>
+      </div>
+
+      <ScrollShadow className='-mr-6 h-full max-h-full py-6 pr-6'>
+        <SidebarMenu isCompact={isCompact} items={sectionItems} />
+      </ScrollShadow>
+
+      <Spacer y={2} />
+      <div
+        className={cn('mt-auto flex flex-col', {
+          'items-center': isCompact
+        })}>
+        <Tooltip content='Help & Feedback' isDisabled={!isCompact} placement='right'>
+          <Button
+            fullWidth
+            className={cn('justify-start truncate text-default-500 data-[hover=true]:text-foreground', {
+              'justify-center': isCompact
+            })}
+            isIconOnly={isCompact}
+            startContent={
+              isCompact ? null : (
+                <Icon className='flex-none text-default-500' icon='solar:info-circle-line-duotone' width={24} />
+              )
+            }
+            variant='light'>
+            {isCompact ? (
+              <Icon className='text-default-500' icon='solar:info-circle-line-duotone' width={24} />
+            ) : (
+              'Help & Information'
+            )}
+          </Button>
+        </Tooltip>
+        <Tooltip content='Log Out' isDisabled={!isCompact} placement='right'>
+          <Button
+            className={cn('justify-start text-default-500 data-[hover=true]:text-foreground', {
+              'justify-center': isCompact
+            })}
+            isIconOnly={isCompact}
+            startContent={
+              isCompact ? null : (
+                <Icon
+                  className='flex-none rotate-180 text-default-500'
+                  icon='solar:minus-circle-line-duotone'
+                  width={24}
+                />
+              )
+            }
+            variant='light'>
+            {isCompact ? (
+              <Icon className='rotate-180 text-default-500' icon='solar:minus-circle-line-duotone' width={24} />
+            ) : (
+              'Log Out'
+            )}
+          </Button>
+        </Tooltip>
+      </div>
+    </aside>
   )
 }
 
