@@ -25,16 +25,16 @@ const Sidebar = (props: Props) => {
         'w-screen- flex h-full w-80 flex-col p-6 transition-width',
         isCompact && 'w-16 items-center px-2 py-6'
       )}>
-      {/* <section className={cn('flex items-center gap-3 px-3', isCompact && 'justify-center gap-0')}>
+      <section className={cn('flex items-center gap-3 px-3', isCompact && 'justify-center gap-0')}>
         <div className='flex items-center justify-center rounded-full'>
           <div className={cn('hidden w-10 scale-0', isCompact && 'flex scale-100')}>
-            <Image src='/images/logo/logo-health-center-small.png' width={50} alt='logo-small' />
+            <Image src='/favicon.ico' width={50} alt='logo-small' />
           </div>
           <div className={cn('flex w-52 scale-100', isCompact && 'hidden scale-0')}>
-            <Image src='/images/logo/logo-health-center.png' width={200} alt='logo' />
+            <Image src='/favicon.ico' width={200} alt='logo' />
           </div>
         </div>
-      </section> */}
+      </section>
 
       <div className='mt-8 flex items-center gap-3 px-3'>
         <Avatar isBordered className='flex-none text-default-600' size='sm' />
