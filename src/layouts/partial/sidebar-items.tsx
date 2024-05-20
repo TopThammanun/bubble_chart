@@ -29,40 +29,15 @@ export const sectionItems: SidebarItem[] = [
     ]
   },
   {
-    key: 'patient',
-    title: 'จัดการข้อมูลผู้ป่วย',
+    key: 'demo',
+    title: 'ตัวอย่าง',
     items: [
       {
-        key: 'patient-create',
-        href: '/patient/create',
+        key: 'demo-page',
+        href: '#',
         icon: 'solar:document-medicine-linear',
-        title: 'เพิ่มข้อมูลผู้ป่วย',
-        endContent: <Icon className='text-default-400' icon='solar:add-circle-line-duotone' width={24} />
-      },
-      {
-        key: 'patient-information',
-        href: '/patient/information',
-        icon: 'solar:document-add-linear',
-        title: 'ข้อมูลผู้ป่วย'
-      },
-      {
-        key: 'patient-complete',
-        href: '/patient/complete',
-        icon: 'solar:file-check-linear',
-        title: 'Complete'
-      }
-    ]
-  },
-  {
-    key: 'prevent-dengue-fever',
-    title: 'เฝ้าระวังและป้องกันโรคไข้เลือดออก',
-    items: [
-      {
-        key: 'prevent-dengue-fever-create-ci',
-        href: '/prevent-dengue-fever/create-ci',
-        icon: 'solar:document-text-linear',
-        title: 'รายงานค่า CI รายสัปดาห์',
-        endContent: <Icon className='text-default-400' icon='solar:add-circle-line-duotone' width={24} />
+        title: 'Demo',
+        startContent: <TeamAvatar name='Demo' />
       }
     ]
   }

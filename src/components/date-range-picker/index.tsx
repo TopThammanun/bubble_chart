@@ -69,7 +69,7 @@ const DateRangePicker = ({
   return (
     <Fragment>
       {!isDisabled && !isReadOnly ? (
-        <Popover placement='top' isOpen={isOpen} onOpenChange={open => setIsOpen(open)}>
+        <Popover placement='top' isOpen={isOpen} onOpenChange={open => setIsOpen(open)} triggerScaleOnOpen={false}>
           <PopoverTrigger className='z-0'>
             <div>
               <Input

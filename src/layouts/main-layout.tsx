@@ -1,16 +1,10 @@
 'use client'
 
 import React, { ReactNode } from 'react'
-import { Avatar, Button, ScrollShadow, Spacer, Tooltip, Image, Card, CardBody } from '@nextui-org/react'
-import { Icon } from '@iconify/react'
+import { Card } from '@nextui-org/react'
 import { useMediaQuery } from 'usehooks-ts'
-import { cn } from '@/utils/cn'
-import SidebarMenu from './partial/sidebar-menu'
-import { useSelector } from 'react-redux'
-import { StateType } from '@/store'
 import Sidebar from './partial/sidebar'
 import Navbar from './partial/navbar'
-import Container from '@/components/container'
 
 type Props = {
   children: ReactNode
