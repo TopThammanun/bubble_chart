@@ -6,7 +6,6 @@ import dayjs from 'dayjs'
 import { DateRange, DayPicker } from 'react-day-picker'
 import { Input, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react'
 import { useEffect, useState } from 'react'
-import { formatDate } from '@/utils/formatDate'
 import Calendar from '../calendar'
 
 type Props = {
@@ -53,7 +52,7 @@ const DateRangePicker = ({
 
   useEffect(() => {
     if (props.selected && isDateRange(props.selected)) {
-      const formattedDates = `${formatDate(dayjs(props.selected?.from), 'DD/MM/YYYY')} - ${formatDate(dayjs(props.selected?.to), 'DD/MM/YYYY')}`
+      const formattedDates = `${dayjs(props.selected?.from).format('DD/MM/YYYY')} - ${dayjs(props.selected?.to).format('DD/MM/YYYY')}`
       setTextValue(formattedDates)
       const updateConut = countSelected + 1
       setCountSelected(updateConut)

@@ -9,7 +9,7 @@ import store from '@/store'
 import { AppPropsWithLayoutType } from '@/types/layout/AppPropsWithLayout'
 import NprogressProvider from '@/providers/nprogress'
 import ReactQueryProvider from '@/providers/react-query'
-import DateJSProvider from '@/providers/date'
+import DayjsProvider from '@/providers/dayjs'
 import NextUIProvider from '@/providers/next-ui/index'
 import AuthGuard from '@/providers/auth'
 
@@ -23,9 +23,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayoutType) {
         <ReduxProvider store={store}>
           <NprogressProvider>
             <NextUIProvider>
-              <DateJSProvider>
+              <DayjsProvider>
                 <AuthGuard authGuard={auth}>{getLayout(<Component {...pageProps} />)}</AuthGuard>
-              </DateJSProvider>
+              </DayjsProvider>
             </NextUIProvider>
           </NprogressProvider>
         </ReduxProvider>

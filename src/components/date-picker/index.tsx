@@ -6,7 +6,6 @@ import dayjs from 'dayjs'
 import { DayPicker } from 'react-day-picker'
 import Calendar from '../calendar'
 import { Input, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react'
-import { formatDate } from '@/utils/formatDate'
 
 type Props = {
   mode: 'single'
@@ -49,9 +48,7 @@ const DatePicker = ({
   const isDate = (selected: Date | undefined): selected is Date => selected instanceof Date
   useEffect(() => {
     if (props.selected && isDate(props.selected)) {
-      const formattedDates = formatDate(dayjs(props.selected), 'DD/MM/YYYY')
-      setTextValue(formattedDates)
-    } else {
+      const formattedDates = dayjs(props.selected).format('DD/MM/YYYY')
       setTextValue('')
     }
     setIsOpen(false)

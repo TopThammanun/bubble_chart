@@ -10,6 +10,7 @@ import useLoaderGlobal from '@/hooks/useLoaderGlobal'
 import DatePicker from '@/components/date-picker'
 import DateMultiplePicker from '@/components/date-multiple-picker'
 import DateRangePicker from '@/components/date-range-picker'
+import dayjs from 'dayjs'
 
 type Props = {}
 
@@ -35,7 +36,6 @@ const Home = (props: Props) => {
         <Button variant='flat' color='primary' onClick={getApi}>
           Call API
         </Button>
-
         <div className='grid grid-cols-6 gap-5 max-md:grid-cols-2'>
           <Button
             color='primary'
