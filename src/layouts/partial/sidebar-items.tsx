@@ -21,7 +21,7 @@ export const sectionItems: SidebarItem[] = [
       },
       {
         key: 'my-port',
-        href: '/manage-port',
+        href: '#',
         icon: 'solar:pie-chart-2-outline',
         title: 'แบ่งสัดส่วน'
       }
