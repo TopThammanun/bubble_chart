@@ -60,16 +60,32 @@ const Dashboard = (props: Props) => {
   }
 
   const optionBarChart = {
+    legend: {
+      data: ['Evaporation', 'Precipitation']
+    },
     xAxis: {
       type: 'category',
-      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      data: [
+        'มกราคม',
+        'กุมภาพันธ์',
+        'มีนาคม',
+        'เมษายน',
+        'พฤษภาคม',
+        'มิถุนายน',
+        'กรกฎาคม',
+        'สิงหาคม',
+        'กันยายน',
+        'ตุลาคม',
+        'พฤษจิกายน',
+        'ธันวาคม'
+      ]
     },
     yAxis: {
       type: 'value'
     },
     series: [
       {
-        data: [18203, 23489, 29034, 104970, 131744, 630230],
+        data: [432, 5654, 345, 7564, 234, 63454, 2344, 345, 7564, 234, 63454, 2344],
         type: 'bar',
         backgroundStyle: {
           color: 'rgba(180, 180, 180, 0.2)'
@@ -80,7 +96,7 @@ const Dashboard = (props: Props) => {
         showBackground: true
       },
       {
-        data: [19325, 23438, 31000, 121594, 134141, 681807],
+        data: [1237, 4356, 6634, 23444, 3445, 63454, 2344, 6634, 23444, 3445, 63454, 2344],
         type: 'bar',
         backgroundStyle: {
           color: 'rgba(180, 180, 180, 0.2)'

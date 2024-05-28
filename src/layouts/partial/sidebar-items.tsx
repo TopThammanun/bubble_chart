@@ -15,7 +15,7 @@ export const sectionItems: SidebarItem[] = [
       },
       {
         key: 'dashboard',
-        href: '#',
+        href: '/dashboard',
         icon: 'solar:widget-2-outline',
         title: 'สรุปผลข้อมูล'
       },
