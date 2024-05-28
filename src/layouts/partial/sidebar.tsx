@@ -1,13 +1,14 @@
 import { StateType } from '@/store'
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useMediaQuery } from 'usehooks-ts'
-import { Avatar, Button, ScrollShadow, Spacer, Tooltip, Image } from '@nextui-org/react'
+import { useSelector } from 'react-redux'
+import { Avatar, Button, ScrollShadow, Spacer, Tooltip } from '@nextui-org/react'
 import { cn } from '@/utils/cn'
 import SidebarMenu from './sidebar-menu'
 import { sectionItems } from './sidebar-items'
 import { Icon } from '@iconify/react/dist/iconify.js'
-import { appSettingAction } from '@/store/reducers/app-setting'
+import configLayout from '@/layouts/config-layout.json'
+import { useTheme } from 'next-themes'
+import useBreakpoint from '@/hooks/useBreakpoint'
 
 type Props = {
   disableIsCompact?: boolean
@@ -15,28 +16,31 @@ type Props = {
 
 const Sidebar = (props: Props) => {
   const appSettingState = useSelector((state: StateType) => state.appSettingState)
-  const isMobile = useMediaQuery('(max-width: 768px)')
+  const { isMobile } = useBreakpoint()
+  const { setTheme, theme } = useTheme()
 
   const isCompact = props.disableIsCompact ? false : appSettingState.isCompact || isMobile
 
+  const handleChangeTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark')
+    } else {
+      setTheme('light')
+    }
+  }
+
   return (
     <aside
-      className={cn(
-        'w-screen- flex h-full w-80 flex-col p-6 transition-width',
-        isCompact && 'w-16 items-center px-2 py-6'
-      )}>
-      <section className={cn('flex items-center gap-3 px-3', isCompact && 'justify-center gap-0')}>
-        <div className='flex items-center justify-center rounded-full'>
-          <div className={cn('hidden w-10 scale-0', isCompact && 'flex scale-100')}>
-            <Image src='/favicon.ico' width={50} alt='logo-small' />
-          </div>
-          <div className={cn('flex w-52 scale-100', isCompact && 'hidden scale-0')}>
-            <Image src='/favicon.ico' width={200} alt='logo' />
-          </div>
+      className={cn('w-screen- flex h-full flex-col p-6 transition-width', isCompact && 'items-center px-2 py-6')}
+      style={{ width: isCompact ? configLayout.sidebar.widthCompact : configLayout.sidebar.width }}>
+      {isMobile && (
+        <div className='flex items-center gap-2 pl-2'>
+          <Icon icon='solar:graph-new-bold' width={40} className='text-primary' />
+          <p className='text-lg font-bold uppercase text-primary'>{process.env.NEXT_PUBLIC_PROJECT_NAME}</p>
         </div>
-      </section>
+      )}
 
-      <div className='mt-8 flex items-center gap-3 px-3'>
+      <div className='mt-5 flex items-center gap-3 px-3'>
         <Avatar isBordered className='flex-none text-default-600' size='sm' />
         <div className={cn('flex max-w-full flex-col', { hidden: isCompact })}>
           <p className='truncate text-small font-medium text-default-600'>FirstName LastName</p>
@@ -49,51 +53,36 @@ const Sidebar = (props: Props) => {
       </ScrollShadow>
 
       <Spacer y={2} />
-      <div
-        className={cn('mt-auto flex flex-col', {
-          'items-center': isCompact
-        })}>
-        <Tooltip content='Help & Feedback' isDisabled={!isCompact} placement='right'>
+      <div className={cn('mt-auto flex flex-col', { 'items-center': isCompact })}>
+        {isMobile && (
           <Button
             fullWidth
-            className={cn('justify-start truncate text-default-500 data-[hover=true]:text-foreground', {
-              'justify-center': isCompact
-            })}
-            isIconOnly={isCompact}
+            className={cn('justify-start truncate text-default-500 data-[hover=true]:text-foreground')}
             startContent={
-              isCompact ? null : (
-                <Icon className='flex-none text-default-500' icon='solar:info-circle-line-duotone' width={24} />
-              )
+              <div>
+                {theme === 'light' ? (
+                  <Icon className='text-default-400' icon='solar:moon-line-duotone' width={24} />
+                ) : (
+                  <Icon className='text-default-400' icon='solar:sun-2-line-duotone' width={24} />
+                )}
+              </div>
             }
-            variant='light'>
-            {isCompact ? (
-              <Icon className='text-default-500' icon='solar:info-circle-line-duotone' width={24} />
-            ) : (
-              'Help & Information'
-            )}
+            variant='light'
+            onClick={handleChangeTheme}>
+            โหมดสว่าง/มืด
           </Button>
-        </Tooltip>
-        <Tooltip content='Log Out' isDisabled={!isCompact} placement='right'>
+        )}
+        <Tooltip content='ออกจากระบบ' isDisabled={!isCompact} placement='right'>
           <Button
             className={cn('justify-start text-default-500 data-[hover=true]:text-foreground', {
               'justify-center': isCompact
             })}
             isIconOnly={isCompact}
             startContent={
-              isCompact ? null : (
-                <Icon
-                  className='flex-none rotate-180 text-default-500'
-                  icon='solar:minus-circle-line-duotone'
-                  width={24}
-                />
-              )
+              isCompact ? null : <Icon icon='solar:logout-3-linear' className='flex-none text-default-500' width={24} />
             }
             variant='light'>
-            {isCompact ? (
-              <Icon className='rotate-180 text-default-500' icon='solar:minus-circle-line-duotone' width={24} />
-            ) : (
-              'Log Out'
-            )}
+            {isCompact ? <Icon icon='solar:logout-3-linear' className='text-default-500' width={24} /> : 'ออกจากระบบ'}
           </Button>
         </Tooltip>
       </div>

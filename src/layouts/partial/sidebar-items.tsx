@@ -1,5 +1,3 @@
-import { Icon } from '@iconify/react'
-
 import { type SidebarItem } from './sidebar-menu'
 import TeamAvatar from './team-avatar'
 import { Chip } from '@nextui-org/react'
@@ -16,28 +14,34 @@ export const sectionItems: SidebarItem[] = [
         title: 'หน้าหลัก'
       },
       {
-        key: 'projects',
+        key: 'dashboard',
         href: '#',
         icon: 'solar:widget-2-outline',
-        title: 'แดชบอร์ด',
-        endContent: (
-          <Chip size='sm' variant='flat'>
-            Coming Soon
-          </Chip>
-        )
+        title: 'สรุปผลข้อมูล'
+      },
+      {
+        key: 'my-port',
+        href: '/manage-port',
+        icon: 'solar:pie-chart-2-outline',
+        title: 'แบ่งสัดส่วน'
       }
     ]
   },
   {
     key: 'demo',
-    title: 'ตัวอย่าง',
+    title: 'โปรแกรมคำนวณ',
     items: [
       {
         key: 'demo-page',
         href: '#',
-        icon: 'solar:document-medicine-linear',
-        title: 'Demo',
-        startContent: <TeamAvatar name='Demo' />
+        icon: 'solar:calculator-linear',
+        title: 'เครื่องคิดเลข',
+        startContent: <TeamAvatar name='Demo' />,
+        endContent: (
+          <Chip size='sm' variant='flat'>
+            Coming Soon
+          </Chip>
+        )
       }
     ]
   }

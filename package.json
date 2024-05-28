@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/is-prop-valid": "^1.2.2",
     "@iconify/react": "^4.1.1",
     "@nextui-org/react": "^2.3.6",
     "@reduxjs/toolkit": "^2.0.1",

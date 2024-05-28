@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes'
 import { Icon } from '@iconify/react'
 import { Button } from '@nextui-org/react'
 
-const SwicthThemes = () => {
+const SwitchTheme = () => {
   const { setTheme } = useTheme()
 
   return (
@@ -32,4 +32,4 @@ const SwicthThemes = () => {
   )
 }
 
-export default SwicthThemes
+export default SwitchTheme

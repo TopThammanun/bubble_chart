@@ -1,4 +1,17 @@
 {
   "editor.formatOnSave": true,
-  "headwind.runOnSave": true
+  "headwind.runOnSave": true,
+  "cSpell.words": [
+    "nextui",
+    "tailwindcss",
+    "clsx",
+    "hugeicons",
+    "iconify",
+    "nextui",
+    "nprogress",
+    "reduxjs",
+    "tailwindcss",
+    "tanstack",
+    "usehooks"
+  ]
 }

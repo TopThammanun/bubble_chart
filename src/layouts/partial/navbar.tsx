@@ -1,34 +1,53 @@
 'use client'
 
-import React, { useState, ReactNode, Fragment } from 'react'
-import router from 'next/router'
+import React, { useState, Fragment, useEffect } from 'react'
 import { Icon } from '@iconify/react'
-import { Button, Card, ScrollShadow, Tooltip } from '@nextui-org/react'
+import { Button, Card, Select, SelectItem, SelectSection, Tooltip } from '@nextui-org/react'
 import { useDispatch, useSelector } from 'react-redux'
 import Drawer from '@/components/drawer'
 import Sidebar from './sidebar'
 import { appSettingAction } from '@/store/reducers/app-setting'
 import { StateType } from '@/store'
-import { useMediaQuery } from 'usehooks-ts'
+import SwitchTheme from '@/components/switch-theme'
+import configLayout from '@/layouts/config-layout.json'
+import NProgress from 'nprogress'
+import useBreakpoint from '@/hooks/useBreakpoint'
 
-type Props = {
-  breadcrumb?: ReactNode
-}
+type Props = {}
 
 const Navbar = (props: Props) => {
-  const { breadcrumb } = props
   const dispatch = useDispatch()
   const appSettingState = useSelector((state: StateType) => state.appSettingState)
-  const isMobile = useMediaQuery('(max-width: 768px)')
+  const { isMobile } = useBreakpoint()
   const [isOpenToggle, setIsOpenToggle] = useState(false)
+  const isCompact = appSettingState.isCompact || isMobile
 
   const onToggleCompact = () => {
     dispatch(appSettingAction.onToggleCompact())
   }
 
-  const logout = () => {
-    router.push('/')
-  }
+  useEffect(() => {
+    if (NProgress.done()) {
+      setIsOpenToggle(false)
+    }
+  }, [NProgress.status])
+
+  const workspaces = [
+    {
+      value: '0',
+      label: 'เลือกพอร์ต',
+      items: [
+        {
+          value: '1',
+          label: 'พอร์ตลงทุนหลัก'
+        },
+        {
+          value: '2',
+          label: 'พอร์ตลงทุนรอง'
+        }
+      ]
+    }
+  ]
 
   return (
     <Fragment>
@@ -38,39 +57,48 @@ const Navbar = (props: Props) => {
         onClose={() => {
           setIsOpenToggle(!isOpenToggle)
         }}
-        size={'20rem'}>
+        size={configLayout.sidebar.width}>
         <Sidebar disableIsCompact={true} />
       </Drawer>
+
       <nav className='sticky top-0 z-[40]'>
-        <div className='bg-gradient-to-b from-background from-60% to-background/0 p-4 max-md:p-4 max-md:pt-3'>
-          <Card className='flex flex-row items-center justify-between border-1 p-2'>
-            <div className='flex items-center gap-5'>
-              {!isMobile && (
-                <Tooltip
-                  showArrow={true}
-                  content={`${appSettingState.isCompact ? 'ขยายเมนู' : 'ย่อเมนู'}`}
-                  delay={0}
-                  closeDelay={200}>
-                  <Button isIconOnly size='sm' variant='light' onPress={onToggleCompact}>
-                    <Icon icon='mynaui:sidebar-alt' width={26} height={26} className='text-default-500' />
-                  </Button>
-                </Tooltip>
-              )}
-              <div className='flex gap-2 lg:hidden'>
-                <div
-                  className='cursor-pointer'
+        <Card
+          className={'flex flex-row items-center justify-between border-b-1 px-4'}
+          radius='none'
+          shadow='none'
+          style={{ height: configLayout.navbar.height }}>
+          <div className='flex items-center gap-2'>
+            {isMobile ? (
+              <div className='flex items-center gap-2'>
+                <Button
+                  isIconOnly
+                  variant='light'
                   onClick={() => {
                     setIsOpenToggle(!isOpenToggle)
                   }}>
-                  <Icon icon='lucide:menu' className='h-6 w-6' />
-                </div>
-                <p>Health Center CMU</p>
+                  <Icon icon='solar:hamburger-menu-linear' width={26} className='text-default-500' />
+                </Button>
               </div>
-              {breadcrumb && breadcrumb}
+            ) : (
+              <Tooltip
+                showArrow={true}
+                content={`${appSettingState.isCompact ? 'ขยายเมนู' : 'ย่อเมนู'}`}
+                delay={0}
+                closeDelay={200}>
+                <Button isIconOnly size='sm' variant='light' onPress={onToggleCompact}>
+                  <Icon icon='solar:sidebar-minimalistic-linear' width={26} className='text-default-500' />
+                </Button>
+              </Tooltip>
+            )}
+            <div className='flex items-center gap-2'>
+              <Icon icon='solar:code-square-bold' width={35} className='text-primary' />
+              {!isMobile && (
+                <p className='text-lg font-bold uppercase text-primary'>{process.env.NEXT_PUBLIC_PROJECT_NAME}</p>
+              )}
             </div>
-            <div className='flex items-center gap-2'></div>
-          </Card>
-        </div>
+          </div>
+          <div className='flex items-center gap-2'>{!isMobile && <SwitchTheme />}</div>
+        </Card>
       </nav>
     </Fragment>
   )
