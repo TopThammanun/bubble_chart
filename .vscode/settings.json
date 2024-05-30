@@ -2,6 +2,10 @@
   "editor.formatOnSave": true,
   "headwind.runOnSave": true,
   "css.lint.unknownAtRules": "ignore",
+  "files.associations": {
+    ".env": "env",
+    ".env.*": "env"
+  },
   "cSpell.words": [
     "nextui",
     "tailwindcss",
