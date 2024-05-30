@@ -4,8 +4,13 @@ import { StateType } from '@/store'
 import Head from 'next/head'
 import React, { Fragment, ReactNode } from 'react'
 import { useSelector } from 'react-redux'
-import { Image } from '@nextui-org/react'
 import LoadingScreen from '@/components/loading-screen'
+import { Prompt } from 'next/font/google'
+
+const prompt = Prompt({
+  subsets: ['latin', 'latin-ext', 'thai'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
+})
 
 type Props = {
   children: ReactNode
@@ -28,7 +33,7 @@ const RootLayout = (props: Props) => {
       </Head>
       <main>
         <LoadingScreen isLoading={loaderState.loader > 0} />
-        {props.children}
+        <div className={prompt.className}>{props.children}</div>
       </main>
     </Fragment>
   )

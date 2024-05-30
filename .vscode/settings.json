@@ -1,6 +1,7 @@
 {
   "editor.formatOnSave": true,
   "headwind.runOnSave": true,
+  "css.lint.unknownAtRules": "ignore",
   "cSpell.words": [
     "nextui",
     "tailwindcss",
