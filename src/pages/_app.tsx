@@ -14,6 +14,14 @@ import NextUIProvider from '@/providers/next-ui/index'
 import AuthGuard from '@/providers/auth'
 import RootLayout from '@/layouts/root-layout'
 
+import { Prompt } from 'next/font/google'
+const prompt = Prompt({
+  subsets: ['latin', 'latin-ext', 'thai'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  display: 'swap'
+})
+
 export default function App({ Component, pageProps }: AppPropsWithLayoutType) {
   const getLayout = Component.getLayout || ((page: ReactElement) => page)
   const auth = Component.auth ?? false
@@ -26,6 +34,11 @@ export default function App({ Component, pageProps }: AppPropsWithLayoutType) {
             <NextUIProvider>
               <DayjsProvider>
                 <AuthGuard isAuth={auth}>
+                  <style jsx global>{`
+                    * {
+                      font-family: ${prompt.style.fontFamily};
+                    }
+                  `}</style>
                   <RootLayout>{getLayout(<Component {...pageProps} />)}</RootLayout>
                 </AuthGuard>
               </DayjsProvider>

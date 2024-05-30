@@ -101,7 +101,6 @@ const Home = (props: Props) => {
             Open Question
           </Button>
         </div>
-
         <div className='grid grid-cols-2 gap-5 max-sm:grid-cols-1'>
           <DatePicker
             mode='single'
