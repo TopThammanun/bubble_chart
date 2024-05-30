@@ -1,6 +1,7 @@
 {
   "editor.formatOnSave": true,
   "headwind.runOnSave": true,
+  "cSpell.ignoreRegExpList": ["/[\\u0E00-\\u0E7F]/g"],
   "css.lint.unknownAtRules": "ignore",
   "files.associations": {
     ".env": "env",
