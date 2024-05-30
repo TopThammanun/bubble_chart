@@ -5,8 +5,8 @@ import Head from 'next/head'
 import React, { Fragment, ReactNode } from 'react'
 import { useSelector } from 'react-redux'
 import LoadingScreen from '@/components/loading-screen'
-import { Prompt } from 'next/font/google'
 
+import { Prompt } from 'next/font/google'
 const prompt = Prompt({
   subsets: ['latin', 'latin-ext', 'thai'],
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
@@ -31,9 +31,9 @@ const RootLayout = (props: Props) => {
         <meta name='keyword' content={props.keyword} />
         <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
       </Head>
-      <main>
+      <main className={prompt.className}>
         <LoadingScreen isLoading={loaderState.loader > 0} />
-        <div className={prompt.className}>{props.children}</div>
+        {props.children}
       </main>
     </Fragment>
   )

@@ -20,7 +20,7 @@ const Dashboard = (props: Props) => {
 
       <Spacer y={5} />
       <div className='grid grid-cols-12 gap-5'>
-        <div className='col-span-4 rounded-xl border-2 bg-content1 p-10'>
+        <div className='col-span-4 rounded-xl border-2 bg-content1 py-10'>
           <h2 className='text-center text-3xl font-semibold'>ปรเภทกิจกรรม</h2>
           <PieChart />
         </div>
