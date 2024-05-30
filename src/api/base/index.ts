@@ -1,7 +1,7 @@
 import Alert from '@/components/alert'
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import $ from 'jquery'
-import { apiBaseType } from './apiBaseType'
+import { apiBaseType } from './type'
 
 const param = $.param
 const defaultURL = process.env.NEXT_PUBLIC_SERVICE
