@@ -145,14 +145,12 @@ const Home = (props: Props) => {
 }
 
 export default Home
-Home.authGuard = false
+Home.auth = false
 
 Home.getLayout = (page: ReactElement) => {
   return (
     <Fragment>
-      <RootLayout>
-        <MainLayout>{page}</MainLayout>
-      </RootLayout>
+      <MainLayout>{page}</MainLayout>
     </Fragment>
   )
 }

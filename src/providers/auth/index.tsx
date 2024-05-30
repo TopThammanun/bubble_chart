@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 
 type Props = {
   children: React.ReactNode
-  authGuard: boolean
+  isAuth: boolean
 }
 
 const AuthGuard = (props: Props) => {
@@ -14,7 +14,7 @@ const AuthGuard = (props: Props) => {
 
   const handleCheckAuth = () => {
     const token = sessionStorage.getItem('token') // or Redux or Cookie or Other
-    if (!token && props.authGuard) {
+    if (!token && props.isAuth) {
       router.push('/') // Path Login
     } else {
       setLoading(false)

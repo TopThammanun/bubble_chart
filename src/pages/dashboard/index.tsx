@@ -49,14 +49,12 @@ const Dashboard = (props: Props) => {
 
 export default Dashboard
 
-Dashboard.authGuard = false
+Dashboard.auth = false
 
 Dashboard.getLayout = (page: ReactElement) => {
   return (
     <Fragment>
-      <RootLayout>
         <MainLayout>{page}</MainLayout>
-      </RootLayout>
     </Fragment>
   )
 }

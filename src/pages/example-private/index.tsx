@@ -16,12 +16,10 @@ const ExamplePrivate = (props: Props) => {
 ExamplePrivate.getLayout = (page: ReactElement) => {
   return (
     <Fragment>
-      <RootLayout>
-        <MainLayout>{page}</MainLayout>
-      </RootLayout>
+      <MainLayout>{page}</MainLayout>
     </Fragment>
   )
 }
 
-ExamplePrivate.authGuard = true
+ExamplePrivate.auth = true
 export default ExamplePrivate
