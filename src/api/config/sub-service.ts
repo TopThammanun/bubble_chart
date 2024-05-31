@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios'
 import $ from 'jquery'
-import apiMethods from '@/api/apiMethods'
+import apiMethods from '@/api/core/apiMethods'
 
 const param = $.param
 const urlService = process.env.NEXT_PUBLIC_SERVICE
@@ -45,7 +45,7 @@ AxiosInstanceConfig.interceptors.response.use(
   }
 )
 
-const subService = apiMethods(AxiosInstanceConfig)
+const mainService = apiMethods(AxiosInstanceConfig)
 
-export default subService
+export default mainService
 export { param, AxiosInstanceConfig }

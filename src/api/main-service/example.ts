@@ -1,9 +1,9 @@
-import subService from '@/api/main-service/config'
+import subService from '@/api/config/main-service'
 
-const exampleApi = {
+const exampleMainService = {
   getExample() {
     return subService.get({ url: `/example` })
   }
 }
 
-export default exampleApi
+export default exampleMainService
