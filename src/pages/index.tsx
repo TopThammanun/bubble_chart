@@ -5,12 +5,12 @@ import MainLayout from '@/layouts/main-layout'
 import { DateRange } from 'react-day-picker'
 import Alert from '@/components/alert'
 import { Button, Input } from '@nextui-org/react'
-import apiBase from '@/api/base'
 import useLoaderGlobal from '@/hooks/useLoaderGlobal'
 import DatePicker from '@/components/date-picker'
 import DateMultiplePicker from '@/components/date-multiple-picker'
 import DateRangePicker from '@/components/date-range-picker'
 import dayjs from 'dayjs'
+import mainService from '@/api/sub-service/config'
 
 type Props = {}
 
@@ -24,7 +24,7 @@ const Home = (props: Props) => {
 
   const getApi = async () => {
     loaderGlobal.start()
-    await apiBase.get({ urlBase: 'https://randomuser.me', url: '/api' })
+    await mainService.get({ url: '/api' })
     loaderGlobal.stop()
   }
 
