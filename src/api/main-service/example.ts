@@ -1,4 +1,4 @@
-import mainService from '@/api/config/main-service'
+import { mainService } from '@/api/config/main-service'
 
 const exampleMainService = {
   getExample() {

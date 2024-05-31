@@ -45,7 +45,5 @@ AxiosInstanceConfig.interceptors.response.use(
   }
 )
 
-const subService = apiMethods(AxiosInstanceConfig)
-
-export default subService
-export { param, AxiosInstanceConfig }
+const mainService = apiMethods(AxiosInstanceConfig)
+export { param, AxiosInstanceConfig, mainService }
