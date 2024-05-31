@@ -2,7 +2,7 @@ import subService from '@/api/config/sub-service'
 
 const exampleSubService = {
   getExample() {
-    return subService.get({ url: `/example` })
+    return subService.get({ url: `/api` })
   }
 }
 
