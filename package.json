@@ -41,7 +41,7 @@
     "redux": "^5.0.1",
     "tailwind-merge": "^2.3.0",
     "usehooks-ts": "^3.1.0",
-    "zod": "^3.23.8"
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.29",
