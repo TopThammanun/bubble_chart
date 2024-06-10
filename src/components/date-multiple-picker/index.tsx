@@ -44,6 +44,7 @@ const DateMultiplePicker = ({
   ...props
 }: CalendarProps & Props) => {
   const isMultipleDate = (selected: Date[] | undefined): selected is Date[] => Array.isArray(selected)
+  const [isOpen, setIsOpen] = useState(false)
   const [textValue, setTextValue] = useState('')
 
   useEffect(() => {
@@ -59,72 +60,46 @@ const DateMultiplePicker = ({
 
   return (
     <Fragment>
-      {!isDisabled && !isReadOnly ? (
-        <Popover placement='top' triggerScaleOnOpen={false}>
-          <PopoverTrigger className='z-0'>
-            <div>
-              <Input
-                type='text'
-                label={label}
-                placeholder={placeholder}
-                labelPlacement={labelPlacement}
-                variant={variant}
-                radius={radius}
-                color={color}
-                size={size}
-                isDisabled={isDisabled}
-                isReadOnly={isReadOnly}
-                isRequired={isRequired}
-                isInvalid={isInvalid}
-                description={description}
-                errorMessage={errorMessage}
-                value={textValue}
-                startContent={
-                  <Icon
-                    icon='solar:calendar-outline'
-                    className='pointer-events-none flex-shrink-0 text-xl text-default-400'
-                  />
-                }
-                classNames={{
-                  mainWrapper: 'w-full'
-                }}
-                className={classNameInput}
-              />
-            </div>
-          </PopoverTrigger>
-          <PopoverContent className='w-auto p-0'>
-            <Calendar {...props} />
-          </PopoverContent>
-        </Popover>
-      ) : (
-        <Input
-          type='text'
-          label={label}
-          placeholder={placeholder}
-          labelPlacement={labelPlacement}
-          variant={variant}
-          radius={radius}
-          color={color}
-          size={size}
-          isDisabled={isDisabled}
-          isReadOnly={isReadOnly}
-          isRequired={isRequired}
-          isInvalid={isInvalid}
-          description={description}
-          errorMessage={errorMessage}
-          value={textValue}
-          startContent={
-            <Icon
-              icon='solar:calendar-outline'
-              className='pointer-events-none flex-shrink-0 text-2xl text-default-400'
+      <Popover
+        placement='top'
+        isOpen={!isDisabled && !isReadOnly && isOpen}
+        onOpenChange={open => setIsOpen(open)}
+        triggerScaleOnOpen={false}>
+        <PopoverTrigger className='z-0'>
+          <div>
+            <Input
+              type='text'
+              label={label}
+              placeholder={placeholder}
+              labelPlacement={labelPlacement}
+              variant={variant}
+              radius={radius}
+              color={color}
+              size={size}
+              isDisabled={isDisabled}
+              isReadOnly={isReadOnly}
+              isRequired={isRequired}
+              isInvalid={isInvalid}
+              description={description}
+              errorMessage={errorMessage}
+              value={textValue}
+              startContent={
+                <Icon
+                  icon='solar:calendar-outline'
+                  className='pointer-events-none flex-shrink-0 text-xl text-default-400'
+                />
+              }
+              classNames={{
+                mainWrapper: 'w-full'
+              }}
+              className={classNameInput}
             />
-          }
-          classNames={{
-            mainWrapper: 'w-full'
-          }}
-          className={classNameInput}
-        />
-      )}
+          </div>
+        </PopoverTrigger>
+        <PopoverContent className='w-auto p-0'>
+          <Calendar {...props} />
+        </PopoverContent>
+      </Popover>
     </Fragment>
   )
 }
