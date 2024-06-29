@@ -9,7 +9,13 @@ const customYear: PluginFunc = (option, dayjsClass, dayjsFactory) => {
   const originalFormat = dayjsClass.prototype.format
   dayjsClass.prototype.format = function (formatStr: string): string {
     const locale = this.locale()
-    formatStr = formatStr.replace('YYYY', 'BBBB').replace('YY', 'BB')
+    if (formatStr.includes('!YYYY') || formatStr.includes('!YY')) {
+      formatStr = formatStr.replace('!YYYY', 'YYYY').replace('!YY', 'YY')
+    } else {
+      if (locale === 'th') {
+        formatStr = formatStr.replace('YYYY', 'BBBB').replace('YY', 'BB')
+      }
+    }
     return originalFormat.call(this, formatStr)
   }
 }
@@ -19,7 +25,7 @@ type Props = {
 }
 
 const DayjsProvider = (props: Props) => {
-  dayjs.locale('en')
+  dayjs.locale('th')
   dayjs.extend(buddhistEra)
   dayjs.extend(customYear)
 
