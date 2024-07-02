@@ -31,6 +31,11 @@ const data = [
 
 type Props = {}
 
+const translation = {
+  use: 'ปริมาณการปล่อยก๊าซเรือนกระจก(tonCO2e)',
+  reduce: 'จำนวนงานกิจกรรม'
+}
+
 const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
   if (active && payload && payload.length) {
     return (
@@ -39,7 +44,7 @@ const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>)
         {payload.map((item: Payload<number, string>, index: number) => (
           <div key={index} className='flex items-center gap-2'>
             <div className='h-2 w-2 rounded-full' style={{ backgroundColor: item.color }} />
-            <p className='text-gray-600'>{`${item.name} : ${item.value}`}</p>
+            <p className='text-gray-600'>{`${translation[item.name as keyof typeof translation] || item.name} : ${item.value}`}</p>
           </div>
         ))}
       </div>
@@ -50,12 +55,13 @@ const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>)
 }
 const CustomLegend = (props: any) => {
   const { payload } = props
+
   return (
     <div className='flex justify-center'>
       {payload.map((entry: any, index: number) => (
         <div key={`item-${index}`} className='mr-2 flex items-center'>
           <div style={{ backgroundColor: entry.color, marginRight: 5 }} className='h-4 w-6 rounded-lg' />
-          {entry.value}
+          {translation[entry.value as keyof typeof translation] || entry.value}
         </div>
       ))}
     </div>
