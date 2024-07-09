@@ -30,7 +30,7 @@ const Department = (props: Props) => {
   const totalActivity = departments.reduce((acc, curr) => acc + curr.activity, 0)
   return (
     <Fragment>
-      <div className='grid grid-cols-4 rounded-lg bg-default-100 p-1 text-lg font-semibold'>
+      <div className='grid grid-cols-4 rounded-lg bg-default-100 p-1 font-semibold'>
         <div className='col-span-2'>ชื่อหน่วยงาน</div>
         <div className='col-span-1'>กิจกรรม</div>
         <div className='col-span-1'>เปอร์เซ็นต์ (%)</div>

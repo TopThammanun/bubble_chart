@@ -15,25 +15,26 @@ import { Payload } from 'recharts/types/component/DefaultTooltipContent'
 
 // Sample data
 const data = [
-  { name: 'ม.ค.', use: 4000, reduce: 2400 },
-  { name: 'ก.พ.', use: 3000, reduce: 1398 },
-  { name: 'มี.ค.', use: 2000, reduce: 9800 },
-  { name: 'เม.ย.', use: 2780, reduce: 3908 },
-  { name: 'พ.ค.', use: 1890, reduce: 4800 },
-  { name: 'มิ.ย.', use: 2390, reduce: 3800 },
-  { name: 'ก.ค.', use: 3490, reduce: 10000 },
-  { name: 'ส.ค.', use: 2000, reduce: 9800 },
-  { name: 'ก.ย.', use: 2780, reduce: 3908 },
-  { name: 'ต.ค.', use: 1890, reduce: 4800 },
-  { name: 'พ.ย.', use: 2390, reduce: 3800 },
-  { name: 'ธ.ค.', use: 3490, reduce: 10000 }
+  { name: 'ม.ค.', use: 4000, activity: 200 },
+  { name: 'ม.ค.', use: 4000, activity: 122 },
+  { name: 'ก.พ.', use: 3000, activity: 234 },
+  { name: 'มี.ค.', use: 2000, activity: 533 },
+  { name: 'เม.ย.', use: 2780, activity: 645 },
+  { name: 'พ.ค.', use: 1890, activity: 765 },
+  { name: 'มิ.ย.', use: 2390, activity: 234 },
+  { name: 'ก.ค.', use: 3490, activity: 874 },
+  { name: 'ส.ค.', use: 2000, activity: 456 },
+  { name: 'ก.ย.', use: 2780, activity: 668 },
+  { name: 'ต.ค.', use: 1890, activity: 762 },
+  { name: 'พ.ย.', use: 2390, activity: 234 },
+  { name: 'ธ.ค.', use: 3490, activity: 555 }
 ]
 
 type Props = {}
 
 const translation = {
-  use: 'ปริมาณการปล่อยก๊าซเรือนกระจก(tonCO2e)',
-  reduce: 'จำนวนงานกิจกรรม'
+  use: 'ตันคาร์บอนไดออกไซต์เทียบเท่า',
+  activity: 'หน่วยงาน'
 }
 
 const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
@@ -78,11 +79,12 @@ const ColumnChart = (props: Props) => {
           <YAxis />
           <Tooltip content={CustomTooltip} />
           <Legend content={<CustomLegend />} />
-          <Bar dataKey='reduce' fill='#0088FE' radius={[6, 6, 0, 0]}>
-            <LabelList dataKey='reduce' position='top' className='text-xs' />
-          </Bar>
-          <Bar dataKey='use' fill='#00C49F' radius={[6, 6, 0, 0]}>
+
+          <Bar dataKey='use' fill='#686869' radius={[6, 6, 0, 0]}>
             <LabelList dataKey='use' position='top' className='text-xs' />
+          </Bar>
+          <Bar dataKey='activity' fill='#0088FE' radius={[6, 6, 0, 0]}>
+            <LabelList dataKey='activity' position='top' className='text-xs' />
           </Bar>
         </BarChart>
       </ResponsiveContainer>
