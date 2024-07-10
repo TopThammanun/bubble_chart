@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios'
 import $ from 'jquery'
-import apiMethods from '@/api/core/apiMethods'
+import apiMethods from '@/api/manual/core/apiMethods'
 
 const param = $.param
 const urlService = process.env.NEXT_PUBLIC_SERVICE

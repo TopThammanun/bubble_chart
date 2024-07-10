@@ -13,6 +13,7 @@ import DayjsProvider from '@/providers/dayjs'
 import NextUIProvider from '@/providers/next-ui/index'
 import AuthGuard from '@/providers/auth'
 import RootLayout from '@/layouts/root-layout'
+import SocketProvider from '@/providers/socket'
 
 import { Prompt } from 'next/font/google'
 const prompt = Prompt({
@@ -30,20 +31,22 @@ export default function App({ Component, pageProps }: AppPropsWithLayoutType) {
     <Fragment>
       <ReactQueryProvider>
         <ReduxProvider store={store}>
-          <NprogressProvider>
-            <NextUIProvider>
-              <DayjsProvider>
-                <AuthGuard isAuth={auth}>
-                  <style jsx global>{`
-                    * {
-                      font-family: ${prompt.style.fontFamily};
-                    }
-                  `}</style>
-                  <RootLayout>{getLayout(<Component {...pageProps} />)}</RootLayout>
-                </AuthGuard>
-              </DayjsProvider>
-            </NextUIProvider>
-          </NprogressProvider>
+          <SocketProvider>
+            <NprogressProvider>
+              <NextUIProvider>
+                <DayjsProvider>
+                  <AuthGuard isAuth={auth}>
+                    <style jsx global>{`
+                      * {
+                        font-family: ${prompt.style.fontFamily};
+                      }
+                    `}</style>
+                    <RootLayout>{getLayout(<Component {...pageProps} />)}</RootLayout>
+                  </AuthGuard>
+                </DayjsProvider>
+              </NextUIProvider>
+            </NprogressProvider>
+          </SocketProvider>
         </ReduxProvider>
       </ReactQueryProvider>
     </Fragment>

@@ -1,4 +1,4 @@
-import { subService } from '@/api/config/sub-service'
+import { subService } from '@/api/manual/configs/sub-service'
 
 const exampleSubService = {
   getExample() {
