@@ -19,4 +19,8 @@
   * {
     @apply min-w-0 border-divider;
   }
+  .exponent {
+    font-size: 0.9em;
+    vertical-align: sub;
+  }
 }
