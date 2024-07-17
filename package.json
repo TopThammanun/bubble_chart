@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate": "openapi --input http://localhost:8081/swagger.json --output ./src/api/generate/main-service --client axios --name MainService --request ./src/api/generate/configs/request.ts"
+    "preprocess-generated": "node ./src/api/generated/configs/pre-processor.js",
+    "postprocess-generated": "node ./src/api/generated/configs/post-processor.js",
+    "generate": "yarn preprocess-generated && swagger-typescript-api -p ./src/api/generated/configs/swagger-processed.json -o ./src/api/generated/main-service -n apiGenerated.ts --axios --unwrap-response-data && yarn postprocess-generated"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.2.2",
@@ -21,6 +23,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "dayjs": "^1.11.10",
+    "dotenv": "^16.4.5",
     "env-cmd": "^10.1.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
@@ -53,6 +56,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "prettier": "3.2.5",
+    "swagger-typescript-api": "^13.0.13",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   },
