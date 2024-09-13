@@ -8,7 +8,17 @@ const config: Config = {
   mode: 'jit',
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}', './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        floating: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' }
+        }
+      },
+      animation: {
+        floating: 'floating 6s ease-in-out infinite'
+      }
+    },
     screens: {
       sm: '640px',
       md: '768px',

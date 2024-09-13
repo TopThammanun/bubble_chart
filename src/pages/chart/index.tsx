@@ -1,7 +1,5 @@
-import { Fragment, ReactElement, useState } from 'react'
-import BubbleChart from '@/components/bubble'
-
-type Props = {}
+import React from 'react'
+import BubbleChart from './Bubble'
 
 interface DataItemRaw {
   ticker: string
@@ -308,6 +306,7 @@ const rawData = {
   ]
 }
 
+// Function to process raw data and convert it to numeric values
 const processData = (items: DataItemRaw[]): DataItem[] => {
   return items.map(item => {
     const price = parseFloat(item.price)
@@ -325,26 +324,17 @@ const processData = (items: DataItemRaw[]): DataItem[] => {
   })
 }
 
-const Home = (props: Props) => {
+const HomePage: React.FC = () => {
   const gainers = processData(rawData.top_gainers)
   const losers = processData(rawData.top_losers)
+
   const combinedData = [...gainers, ...losers]
 
   return (
-    <div>
+    <div className='bg-black'>
       <BubbleChart data={combinedData} />
     </div>
   )
 }
 
-export default Home
-Home.auth = false
-
-Home.getLayout = (page: ReactElement) => {
-  return (
-    <Fragment>
-      {page}
-      {/* <MainLayout>{page}</MainLayout> */}
-    </Fragment>
-  )
-}
+export default HomePage
